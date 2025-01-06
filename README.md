@@ -231,7 +231,6 @@ The module uses the `display_notification` feature to provide real-time feedback
 - **`pytz`**: Used for timezone handling.
 - **`dateutil.relativedelta`**: Used for date calculations.
 
-perbedaan xmlrpc dan restfull api
 
 
 
