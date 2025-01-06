@@ -88,7 +88,151 @@ Setelah migrasi selesai, lakukan validasi data:
 
 ---
 
-## Kesimpulan
-Migrasi dan integrasi modul Odoo dari versi 13 ke 16 membutuhkan persiapan yang matang dan pemahaman yang mendalam tentang perbedaan antar versi. Dengan langkah yang tepat, integrasi ini dapat meningkatkan efisiensi dan produktivitas bisnis secara keseluruhan.
+# Integration Module Documentation
+
+## Overview
+
+The **Integration Module** is designed to facilitate data synchronization between Odoo and external systems. It handles the integration through XML-RPC and REST API connections, enabling the automatic exchange of data such as partners, products, sales orders, purchase orders, and journal entries. The module includes logging capabilities to track synchronization status and errors.
+
+---
+
+## Models
+
+### 1. `integration.integration`
+
+#### Description:
+
+This model represents the main integration configuration for connecting to external systems.
+
+#### Fields:
+
+- `name` (Char): Integration name.
+- `url_data` (Char): URL of the external system.
+- `database` (Char): Database name of the external system.
+- `username` (Char): Username for authentication.
+- `password` (Char): Password for authentication.
+- `integration_ids` (One2many): Related integration lines.
+- `active` (Boolean): Indicates if the integration is active.
+
+#### Methods:
+
+- **`test_connection()`**: Tests the connection to the external system by sending a POST request to the `/web/session/authenticate` endpoint. Displays success or failure messages based on the result.
+
+### 2. `integration.line`
+
+#### Description:
+
+This model represents specific integration endpoints and functions.
+
+#### Fields:
+
+- `integration_id` (Many2one): Reference to the `integration.integration` model.
+- `model_table` (Char): Odoo model to interact with.
+- `end_point` (Char): API endpoint.
+- `function` (Char): Name of the function used for processing.
+- `headers` (Char): HTTP headers for the API requests.
+- `domain_get` (Char): Domain filter for GET requests.
+- `domain_post` (Char): Domain filter for POST requests.
+- `value_get` (Text): Fields to fetch from the external system.
+- `value_post` (Text): Fields to post to Odoo.
+- `is_used` (Boolean): Indicates if the line is active.
+
+### 3. `integration.log`
+
+#### Description:
+
+This model stores logs of integration activities.
+
+#### Fields:
+
+- `name` (Char): Log name.
+- `status` (Integer): HTTP status code.
+- `model_table` (Char): Model involved in the log entry.
+- `function` (Char): Function name.
+- `headers` (Char): HTTP headers used in the request.
+- `endpoint` (Char): API endpoint.
+- `request` (Text): Payload sent.
+- `response` (Text): Response received.
+- `sync_at` (Datetime): Timestamp of synchronization.
+- `success_sync` (Boolean): Indicates if the sync was successful.
+- `message` (Text): Additional message.
+
+#### Methods:
+
+- **`integration_log()`**: Creates or updates a log entry.
+- **`_get_function()`**: Retrieves the function from `integration.line` based on the provided function name.
+- **`read_create_res_partner()`**: Syncs partner data from an external system to Odoo.
+
+---
+
+## Synchronization Methods
+
+### Partner Synchronization
+
+- **`get_res_partner(interval=2)`**: Retrieves and syncs partner data from the external system.
+
+### Product Synchronization
+
+- **`get_product(interval=2)`**: Retrieves and syncs product data.
+- **`hit_create_product()`**: Sample method to create a product in Odoo from external data.
+- **`create_product()`**: Handles product creation logic.
+
+### Sale Order Synchronization
+
+- **`get_sale_order(interval=2)`**: Retrieves and syncs sale orders from the external system.
+
+### Purchase Order Synchronization
+
+- **`get_purchase_order(interval=2)`**: Retrieves and syncs purchase orders.
+
+### Journal Entries Synchronization
+
+- **`get_journal_entries(interval=2)`**: Retrieves and syncs journal entries from the external system.
+
+---
+
+## Utility Methods
+
+### Timezone Handling
+
+- **`_set_timezone(date=fields.Datetime.now(), interval=2)`**: Adjusts the date based on the user's timezone.
+
+### Endpoint Retrieval
+
+- **`_get_end_point(end_point='')`**: Retrieves the integration line based on the specified endpoint.
+
+---
+
+## Error Handling
+
+The module includes robust error handling using the `UserError` and `ValidationError` exceptions. These exceptions are raised when mandatory fields are missing or if there are issues with API requests.
+
+---
+
+## Usage Example
+
+1. Configure an integration record with the necessary details (URL, database, username, password).
+2. Add integration lines for each endpoint you want to sync.
+3. Use the **Test Connection** button to verify the setup.
+4. Run the synchronization methods manually or set them as scheduled actions.
+
+---
+
+## Notifications
+
+The module uses the `display_notification` feature to provide real-time feedback on connection status and synchronization results.
+
+---
+
+## API Dependencies
+
+- **`requests`**: Used for making HTTP requests.
+- **`xmlrpc.client`**: Used for XML-RPC communication with Odoo.
+- **`pytz`**: Used for timezone handling.
+- **`dateutil.relativedelta`**: Used for date calculations.
+
+perbedaan xmlrpc dan restfull api
+
+
 
 ---
