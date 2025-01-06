@@ -1,0 +1,202 @@
+<odoo>  
+    <data noupdate='1'>
+        <record id="ir_seq_customer_code" model="ir.sequence">
+			<field name="name">Customer Code Sequence</field>
+			<field name="code">x.customer.code.seq</field>
+			<field name="prefix"></field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="True" name="use_date_range"/>
+            <field name="padding">5</field>
+			<field name="implementation">standard</field>
+		</record>
+
+        <record id="cron_get_res_partner" model="ir.cron">
+            <field name="name">GET Res Partner (Master Data)</field>
+            <field name="model_id" ref="x_ati_integration_ee.model_integration_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_res_partner(interval=2)</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="cron_get_product_template" model="ir.cron">
+            <field name="name">GET Product Template (Master Data)</field>
+            <field name="model_id" ref="x_ati_integration_ee.model_integration_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_product_template(interval=2)</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="cron_get_product_pricelist" model="ir.cron">
+            <field name="name">GET Product Pricelist (Master Data)</field>
+            <field name="model_id" ref="x_ati_integration_ee.model_integration_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_product_pricelist(interval=2)</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="cron_get_unit_of_measure" model="ir.cron">
+            <field name="name">GET Unit of Measure (Master Data)</field>
+            <field name="model_id" ref="x_ati_integration_ee.model_integration_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_unit_of_measure(interval=2)</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="cron_get_payment_term" model="ir.cron">
+            <field name="name">GET Payment Term (Master Data)</field>
+            <field name="model_id" ref="x_ati_integration_ee.model_integration_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_payment_terms(interval=2)</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="cron_get_project" model="ir.cron">
+            <field name="name">GET Project (Master Data)</field>
+            <field name="model_id" ref="x_ati_integration_ee.model_integration_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_project_project(interval=2)</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="cron_get_sale_order" model="ir.cron">
+            <field name="name">GET Sales Order (Transaction)</field>
+            <field name="model_id" ref="x_ati_integration_ee.model_integration_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_sales_order(interval=2)</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="cron_get_purchase_order" model="ir.cron">
+            <field name="name">GET Purchase Order (Transaction)</field>
+            <field name="model_id" ref="x_ati_integration_ee.model_integration_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_purchase_order(interval=2)</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="cron_get_journal_entries" model="ir.cron">
+            <field name="name">GET Journal Entries (Transaction)</field>
+            <field name="model_id" ref="x_ati_integration_ee.model_integration_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_journal_entries(interval=2)</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="server_data" model="integration.integration">
+            <field name="name">XBASE_DEV</field>
+            <field name="url_data">http://10.64.7.20:8091</field>
+            <field name="database">xbasedev-18sep2022</field>
+            <field name="username">admin@xapiens.id</field>
+            <field name="password">1n1.R4h4s14-4</field>
+        </record>
+
+        <record id="res_partner" model="integration.line">
+            <field name="integration_id">1</field>
+            <field name="model_table">res.partner</field>
+            <field name="end_point">/get_res_partner/v1-api-ent</field>
+            <field name="function">get_res_partner</field>
+        </record>
+
+        <record id="product_template" model="integration.line">
+            <field name="integration_id">1</field>
+            <field name="model_table">product.template</field>
+            <field name="end_point">/get_product_master/v1-api-ent</field>
+            <field name="function">get_product</field>
+        </record>
+
+        <record id="product_pricelist" model="integration.line">
+            <field name="integration_id">1</field>
+            <field name="model_table">product.pricelist</field>
+            <field name="end_point">/get_pricelist_master/v1-api-ent</field>
+            <field name="function">get_pricelist</field>
+        </record>
+
+        <record id="unit_of_measure" model="integration.line">
+            <field name="integration_id">1</field>
+            <field name="model_table">uom.uom</field>
+            <field name="end_point">/get_uom_master/v1-api-ent</field>
+            <field name="function">get_uom</field>
+        </record>
+
+        <record id="payment_term" model="integration.line">
+            <field name="integration_id">1</field>
+            <field name="model_table">account.payment.term</field>
+            <field name="end_point">/get_payment_terms_master/v1-api-ent</field>
+            <field name="function">get_payment_terms</field>
+        </record>
+
+        <record id="project_project" model="integration.line">
+            <field name="integration_id">1</field>
+            <field name="model_table">project.project</field>
+            <field name="end_point">/get_project_data/v1-api-ent</field>
+            <field name="function">get_project</field>
+        </record>
+
+        <record id="sale_order" model="integration.line">
+            <field name="integration_id">1</field>
+            <field name="model_table">sale.order</field>
+            <field name="end_point">/get_sale_orders/v1-api-ent</field>
+            <field name="function">get_sale_order</field>
+        </record>
+
+        <record id="purchase_order" model="integration.line">
+            <field name="integration_id">1</field>
+            <field name="model_table">purchase.order</field>
+            <field name="end_point">/get_purchase_orders/v1-api-ent</field>
+            <field name="function">get_purchase_order</field>
+        </record>
+
+        <record id="journal_entries" model="integration.line">
+            <field name="integration_id">1</field>
+            <field name="model_table">account.move</field>
+            <field name="end_point">/get_journal_entries/v1-api-ent</field>
+            <field name="function">get_journal_entries</field>
+        </record>
+    </data>
+</odoo>

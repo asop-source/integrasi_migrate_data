@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_integration_integration,x_ati_integration_ee.integration_integration,model_integration_integration,base.group_user,1,1,1,1
+access_integration_line,x_ati_integration_ee.integration_line,model_integration_line,base.group_user,1,1,1,1
+access_integration_log,x_ati_integration_ee.integration_log,model_integration_log,base.group_user,1,1,1,1
+access_xpmo_partner_department,x_ati_integration_ee.xpmo_partner_department,model_xpmo_partner_department,base.group_user,1,1,1,1
+access_xpmo_project_status,x_ati_integration_ee.xpmo_project_status,model_xpmo_project_status,base.group_user,1,1,1,1
+access_xpmo_project_type,x_ati_integration_ee.xpmo_project_type,model_xpmo_project_type,base.group_user,1,1,1,1
+access_xpmo_project_engagement,x_ati_integration_ee.xpmo_project_engagement,model_xpmo_project_engagement,base.group_user,1,1,1,1
+access_xpmo_project_client_type,x_ati_integration_ee.xpmo_project_client_type,model_xpmo_project_client_type,base.group_user,1,1,1,1
+"access_product_template_assets","product_template admin_assets","product.model_product_template","x_ati_integration_ee.x_product_admin_assets_group",1,1,1,1
+"access_product_product_assets","product_product admin_assets","product.model_product_product","x_ati_integration_ee.x_product_admin_assets_group",1,1,1,1
+access_client_industry,x_ati_integration_ee.client_industry,model_client_industry,base.group_user,1,1,1,1

@@ -1,0 +1,4 @@
+# Ignore Unnecessary Python Files
+*.po
+*.pyc
+.pyc

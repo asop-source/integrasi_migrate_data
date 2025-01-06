@@ -1,0 +1,175 @@
+<odoo>
+  <data>
+        <record id="integration_form" model="ir.ui.view">
+            <field name="name">integration_form</field>
+            <field name="model">integration.integration</field>
+            <field name="arch" type="xml">
+                <form string="Integration Form">
+                    <header>
+                        <!-- <button name="read_create_res_partner"
+                                string="Res Partner"
+                                type="object"
+                                class="oe_highlight"/> -->
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>
+                                <field name="name"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="url_data" required="1"/>
+                                <field name="database" required="1"/>
+                                <field name="username" required="1"/>
+                                <field name="password" required="1" password="True"/>
+                                <button name="test_connection" type="object" string="Test Connection" icon="fa-television"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="integration_ids" string="Model Line">
+                                <field name="integration_ids">
+                                    <tree string="List Model">
+                                        <field name="integration_id" invisible="1"/>
+                                        <field name="model_table"/>
+                                        <field name="end_point"/>
+                                        <field name="function"/>
+                                        <field name="headers"/>
+                                        <field name="domain_get" placeholder="('active', '=', True), use ',' separator" optional="hide"/>
+                                        <field name="domain_post" placeholder="('email', '=', rp_data['email']), use ',' separator" optional="hide"/>
+                                        <field name="value_get" placeholder="{'fields': ['name', 'company_type', 'email']} use ',' separator" optional="hide"/>
+                                        <field name="value_post" placeholder="'name': rp_data['name'],'company_type': rp_data['company_type'],'email': rp_data['email']" optional="hide"/>
+                                        <field name="is_used"/>
+                                    </tree>
+                                    <form string="Form Line">
+                                        <group>
+                                            <field name="integration_id" invisible="1"/>
+                                            <field name="model_table"/>
+                                            <field name="end_point"/>
+                                            <field name="function"/>
+                                            <field name="headers"/>
+                                            <field name="domain_get" placeholder="('active', '=', True), use ',' separator"/>
+                                            <field name="domain_post" placeholder="('email', '=', rp_data['email']), use ',' separator"/>
+                                            <field name="value_get" placeholder="{'fields': ['name', 'company_type', 'email']} use ',' separator"/>
+                                            <field name="value_post" placeholder="'name': rp_data['name'],'company_type': rp_data['company_type'],'email': rp_data['email']"/>
+                                            <field name="is_used"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                      </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="integration_log_form" model="ir.ui.view">
+            <field name="name">integration_log_form</field>
+            <field name="model">integration.log</field>
+            <field name="arch" type="xml">
+                <form string="Integration Log Form">
+                    <header>
+                        <button name="hit_create_product"
+                                string="Create Product"
+                                type="object"
+                                class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>
+                                <field name="name"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="sync_at"/>
+                                <field name="model_table"/>
+                                <field name="function"/>
+                                <field name="message"/>
+                                <field name="request"/>
+                            </group>
+                            <group>
+                                <field name="headers"/>
+                                <field name="endpoint"/>
+                                <field name="status"/>
+                                <field name="success_sync"/>
+                                <field name="response"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="integration_tree" model="ir.ui.view">
+            <field name="name">integration_tree</field>
+            <field name="model">integration.integration</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="url_data"/>
+                    <field name="database"/>
+                    <field name="username"/>
+                    <field name="password"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="integration_log_tree" model="ir.ui.view">
+            <field name="name">integration_log_tree</field>
+            <field name="model">integration.log</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="function"/>
+                    <field name="endpoint"/>
+                    <field name="sync_at"/>
+                    <field name="success_sync"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="integration_action" model="ir.actions.act_window">
+            <field name="name">Integration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">integration.integration</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Integration Found. Let's create one!
+                </p><p>
+                </p>
+            </field>
+        </record>
+
+        <record id="integration_log_action" model="ir.actions.act_window">
+            <field name="name">LOG Error</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">integration.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Integration Log Found. Let's create one!
+                </p><p>
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="integration_menu_root" 
+                  name="Integration"
+                  sequence="1"/>
+
+                <menuitem id="list_menu" 
+                          name="List"
+                          parent="x_ati_integration_ee.integration_menu_root" 
+                          sequence="1" 
+                          action="integration_action"/> 
+
+                <menuitem id="log_menu" 
+                          name="Log Error"
+                          parent="x_ati_integration_ee.integration_menu_root" 
+                          sequence="2" 
+                          action="integration_log_action"/> 
+  </data>
+</odoo>

@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="x_ati_res_partner_inherit_form" model="ir.ui.view">
+            <field name="name">x_ati_res_partner_inherit_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <!-- <field name="vat" position="after">
+                    <field name="x_is_xapiens_business_unit"/>
+                    <field name="x_bu_code"/>
+                    <field name="x_client_info"/>
+                    <field name="x_client_industry_id"/>
+                </field> -->
+
+                <field name="category_id" position="after">
+                    <!-- <field name="x_client_type"/> -->
+                    <field name="x_cust_code" readonly="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="x_ati_project_project_inherit_form" model="ir.ui.view">
+            <field name="name">x_ati_project_project_inherit_form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='extra_settings']" position="inside">
+                    <field name="subtasks_project_id"/>
+                    <field name="project_no"/>
+                    <field name="department_id"/>
+                    <field name="pic_id"/>
+                    <field name="status_id"/>
+                    <field name="project_type_id"/>
+                    <field name="engagement_id"/>
+                    <field name="sequence_no"/>
+                    <field name="client_type_id"/>
+                    <field name="target_date"/>
+                    <field name="write_date"/>
+                    <field name="recent_date"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
